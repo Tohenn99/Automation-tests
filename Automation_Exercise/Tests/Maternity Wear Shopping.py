@@ -5,7 +5,7 @@ Expecting mother buying maternity and baby preparation items
 
 import pytest
 from playwright.sync_api import Page
-from Pages.All_pages import (
+from POM.All_pages import (
     LoginPage, RegistrationPage, ProductsPage,
     CartPage, CheckoutPage, PaymentPage, TestDataFactory
 )

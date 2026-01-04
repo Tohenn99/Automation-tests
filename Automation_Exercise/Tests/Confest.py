@@ -1,13 +1,37 @@
+"""
+Pytest configuration and fixtures for all tests
+"""
 import pytest
 from playwright.sync_api import Page
-from Pages.All_pages import (
+from POM import (
     LoginPage, RegistrationPage, ProductsPage,
     CartPage, CheckoutPage, PaymentPage, TestDataFactory
 )
 
 
+# ==================== Browser Configuration ====================
 
-# Fixtures for all Page Objects
+@pytest.fixture(scope="session")
+def browser_context_args(browser_context_args):
+    """Browser context configuration"""
+    return {
+        **browser_context_args,
+        "viewport": {"width": 1920, "height": 1080},
+        "ignore_https_errors": True,  # Added for testing
+    }
+
+
+@pytest.fixture
+def page(page: Page):
+    """Page fixture with console logging"""
+    # Track console logs (useful for debugging)
+    page.on("console", lambda msg: print(f"Console [{msg.type}]: {msg.text}"))
+
+    yield page
+
+
+# ==================== Page Object Fixtures ====================
+
 @pytest.fixture
 def login_page(page: Page) -> LoginPage:
     """Fixture for LoginPage"""
@@ -44,7 +68,8 @@ def payment_page(page: Page) -> PaymentPage:
     return PaymentPage(page)
 
 
-# Fixtures for Test Data
+# ==================== Test Data Fixtures ====================
+
 @pytest.fixture
 def user_data_usa():
     """USA user test data"""
@@ -63,11 +88,11 @@ def payment_data():
     return TestDataFactory.get_payment_data()
 
 
-# Browser configuration
-@pytest.fixture(scope="session")
-def browser_context_args(browser_context_args):
-    """Browser context configuration"""
-    return {
-        **browser_context_args,
-        "viewport": {"width": 1920, "height": 1080},
-    }
+# ==================== Pytest Configuration ====================
+
+def pytest_configure(config):
+    """Register custom markers"""
+    config.addinivalue_line("markers", "security: Security tests")
+    config.addinivalue_line("markers", "performance: Performance tests")
+    config.addinivalue_line("markers", "functional: Functional tests")
+    config.addinivalue_line("markers", "slow: Slow running tests")

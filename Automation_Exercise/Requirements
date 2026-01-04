@@ -2,3 +2,4 @@ playwright==1.48.0                #Playwright за browser automation
 pytest==8.3.3                     #Pytest framework за тестове
 pytest-playwright==0.5.2          #Интеграция между Pytest и Playwright
 pytest-html==4.1.1                #Генерира HTML reports от тестовете
+pytest-xdist==3.5.0

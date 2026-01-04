@@ -5,7 +5,7 @@ Fashion stylist buying pieces for magazine photoshoot
 
 import pytest
 from playwright.sync_api import Page
-from Pages.All_pages import (
+from POM import (
     LoginPage, RegistrationPage, ProductsPage,
     CartPage, CheckoutPage, PaymentPage, TestDataFactory
 )

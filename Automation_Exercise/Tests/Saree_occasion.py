@@ -9,7 +9,7 @@ File: test_e2e_06_saree_occasion.py
 
 import pytest
 from playwright.sync_api import Page
-from Pages.All_pages import (
+from POM.All_pages import (
     LoginPage, RegistrationPage, ProductsPage,
     CartPage, CheckoutPage, PaymentPage, TestDataFactory
 )

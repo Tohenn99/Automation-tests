@@ -9,7 +9,7 @@ File: test_e2e_01_womens_premium.py - NE
 
 import pytest
 from playwright.sync_api import Page
-from Pages.All_pages import (
+from POM.All_pages import (
     LoginPage, RegistrationPage, ProductsPage,
     CartPage, CheckoutPage, PaymentPage, TestDataFactory
 )

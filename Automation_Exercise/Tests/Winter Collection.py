@@ -9,7 +9,7 @@ File: test_e2e_08_winter_seasonal.py
 
 import pytest
 from playwright.sync_api import Page
-from Pages.All_pages import (
+from POM.All_pages import (
     LoginPage, RegistrationPage, ProductsPage,
     CartPage, CheckoutPage, PaymentPage, TestDataFactory
 )
